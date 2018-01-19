@@ -1,6 +1,6 @@
 using System;
 
-namespace e.motion_server.Models
+namespace E.Motion.Server.Models
 {
     public class ErrorViewModel
     {

@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using e.motion_server.Models;
+using E.Motion.Server.Models;
 
-namespace e.motion_server.Controllers
+namespace E.Motion.Server.Controllers
 {
     public class HomeController : Controller
     {
