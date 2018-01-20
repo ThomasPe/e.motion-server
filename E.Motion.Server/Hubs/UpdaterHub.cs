@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace E.Motion.Server.Hubs
 {
-    public class Updater : Hub
+    public class UpdaterHub : Hub
     {
         public Task Send(string message)
         {
