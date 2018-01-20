@@ -1,10 +1,28 @@
 ﻿// Write your JavaScript code.
 
-let connection = new signalR.HubConnection('/updater');
+$(function () {
 
-connection.on('send', data => {
-    console.log(data);
+    function start() {
+        console.log("starting");
+        $("body").css("background-color", "red");
+    }
+    function reset() {
+        console.log("resetting");
+        $("body").css("background-color", "blue");
+    }
+    function emotion(e) {
+        console.log(e);
+        $("body").css("background-color", "green");
+    }
+    let connection = new signalR.HubConnection('/updater');
+    
+    connection.on('start', data => {
+        start();
+    });
+    connection.on('reset', data => {
+        reset();
+    });
+    connection.on('emotion', data => {
+        emotion(data);
+    });
 });
-
-connection.start()
-    .then(() => connection.invoke('send', 'Hello'));

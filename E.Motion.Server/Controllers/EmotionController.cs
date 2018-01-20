@@ -23,18 +23,19 @@ namespace E.Motion.Server.Controllers
 
         [Route("start")]
         [HttpPost]
-        public ActionResult Start()
+        public async Task<ActionResult> Start()
         {
             Debug.WriteLine("starting");
-            //await _updaterHubContext.Clients.All.InvokeAsync("Send", "Hello from Emotion controller");
+            await _updaterHubContext.Clients.All.InvokeAsync("Start");
             return new OkResult();
         }
 
         [Route("reset")]
         [HttpPost]
-        public ActionResult Reset()
+        public async Task<ActionResult> Reset()
         {
             Debug.WriteLine("reset");
+            await _updaterHubContext.Clients.All.InvokeAsync("Reset");
             return new OkResult();
         }
 
@@ -44,9 +45,11 @@ namespace E.Motion.Server.Controllers
         /// </summary>
         /// <param name="emotion"></param>
         [HttpPost("{emotion}")]
-        public void PostEmotion([FromRoute]string emotion)
+        public async Task<ActionResult> PostEmotion([FromRoute]string emotion)
         {
             Debug.WriteLine(emotion);
+            await _updaterHubContext.Clients.All.InvokeAsync("Emotion", emotion);
+            return new OkResult();
         }
         
     }
