@@ -48,11 +48,8 @@ namespace E.Motion.Server
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
             app.UseSignalR(routes =>
-
             {
-
                 routes.MapHub<Updater>("updater");
-
             });
         }
     }
