@@ -12,7 +12,7 @@ $(function () {
     }
     function emotion(e) {
         console.log(e);
-        $("body").css("background-color", "green");
+        
     }
     let connection = new signalR.HubConnection('/updater');
     
