@@ -1,10 +1,10 @@
 ﻿// Write your JavaScript code.
 
 $(function () {
-
+    console.log("initialize");
     function start() {
         console.log("starting");
-        $("body").css("background-color", "red");
+        $("body").css("background-image", "url(/images/bg.jpeg)");
     }
     function reset() {
         console.log("resetting");
@@ -25,4 +25,6 @@ $(function () {
     connection.on('emotion', data => {
         emotion(data);
     });
+
+    connection.start();
 });
