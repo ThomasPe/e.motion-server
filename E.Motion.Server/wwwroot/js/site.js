@@ -2,17 +2,20 @@
 
 $(function () {
     console.log("initialize");
+    $("video").hide();
     function start() {
         console.log("starting");
-        $("body").css("background-image", "url(/images/bg.jpeg)");
+        //$("video").attr("src", "/videos/default.mp4");
+        $("video").show();
     }
     function reset() {
+        $("video").hide();
         console.log("resetting");
-        $("body").css("background-color", "blue");
     }
     function emotion(e) {
         console.log(e);
-        
+        $("video").attr("src", "/videos/" + e + ".mp4");
+        $("video")[0].load();
     }
     let connection = new signalR.HubConnection('/updater');
     
