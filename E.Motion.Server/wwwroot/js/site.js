@@ -1,29 +1,38 @@
 ﻿// Write your JavaScript code.
 
 $(function () {
+    var status = "none";
     console.log("initialize");
     $("video").hide();
     function start() {
         console.log("starting");
-        $("video").removeAttr("loop");
-        $("video").attr("src", "/videos/neuer/intro.mp4");
-        $("video").show();
-        $('video').on('ended', function () {
-            this.currentTime = 9;
-        });
+        if (status !== "start") {
+            $("video").removeAttr("loop");
+            $("video").attr("src", "/videos/neuer/intro.mp4");
+            $("video").show();
+            $('video').on('ended', function () {
+                this.currentTime = 9;
+            });
+            status = "start";
+        }
     }
     function reset() {
-        $("video").off('ended');
-        $("video").hide();
-        console.log("resetting");
+        if (status !== "none") {
+            $("video").off('ended');
+            $("video").hide();
+            console.log("resetting");
+            status = "none";
+        }
     }
     function emotion(e) {
         console.log(e);
-        if (e == "sadness") {
-            e = "anger";
-        }
+        // anger, contempt, disgust, fear, happiness, neutral, sadness, surprise
+        status = "emotion";
         if (e == "neutral") {
-            e = "hapiness";
+            e = "happiness";
+        }
+        if (e == "contempt" || e == "disgust" || e == "fear") {
+            e = "surprise";
         }
         $("video").off('ended');
         $("video").attr("src", "/videos/neuer/" + e + ".mp4");
@@ -31,7 +40,7 @@ $(function () {
         $("video")[0].load();
     }
     let connection = new signalR.HubConnection('/updater');
-    
+
     connection.on('start', data => {
         start();
     });
